@@ -8,7 +8,7 @@ title:               Blog
 tagline:             Test Blog
 url:                 url
 paginate:            1
-baseurl:             "https://uslava77.github.io/"
+baseurl:             "https://uslava77.github.io"
 
 # Assets
 #
