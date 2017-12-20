@@ -4,9 +4,9 @@
 permalink:           pretty
 
 # Setup
-title:               HYM
-tagline:             Hack Your Mind
-url:                 hym 
+title:               Blog
+tagline:             Test Blog
+url:                 url
 paginate:            1
 baseurl:             "https://uslava77.github.io/"
 
