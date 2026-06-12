@@ -1,0 +1,47 @@
+[
+  {
+    "file": "clips/AF_HAsh.mp4",
+    "title": "AF HAsh",
+    "date": "",
+    "location": "",
+    "description": "",
+    "tags": [],
+    "featured": false
+  },
+  {
+    "file": "clips/mills.mp4",
+    "title": "Mills combo",
+    "date": "2021-08",
+    "location": "Seattle",
+    "description": "Old practice clip, windmill variation",
+    "tags": ["power", "mills", "practice"],
+    "featured": true
+  },
+  {
+    "file": "clips/bullet.mp4",
+    "title": "Bullet",
+    "date": "",
+    "location": "",
+    "description": "",
+    "tags": [],
+    "featured": false
+  },
+  {
+    "file": "clips/HAr90_bullet.mp4",
+    "title": "HAr90 bullet",
+    "date": "",
+    "location": "",
+    "description": "",
+    "tags": [],
+    "featured": false
+  },
+  {
+    "file": "clips/TM.mp4",
+    "title": "TM",
+    "date": "",
+    "location": "",
+    "description": "",
+    "tags": [],
+    "featured": false
+  }
+]

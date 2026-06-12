@@ -2,20 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>reels</title>
   <style>
-    body { margin: 0; background: #000; }
+    body { margin: 0; background: #000; color: #fff; font-family: sans-serif; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 4px; padding: 4px; }
-    video { width: 100%; display: block; }
+    .video-card { margin: 0; background: #111; }
+    .video-card.featured { outline: 2px solid #fff; outline-offset: -2px; }
+    video { width: 100%; display: block; background: #000; }
+    figcaption { padding: 12px; }
+    h2 { margin: 0 0 6px; font-size: 1rem; }
+    p { margin: 4px 0; color: #bbb; font-size: 0.875rem; }
+    .tags { color: #888; }
+    .error { padding: 16px; color: #f88; }
   </style>
 </head>
 <body>
-  <div class="grid">
-    <video src="clips/AF_HAsh.mp4" controls></video>
-    <video src="clips/mills.mp4" controls></video>
-    <video src="clips/bullet.mp4" controls></video>
-    <video src="clips/HAr90_bullet.mp4" controls></video>
-    <video src="clips/TM.mp4" controls></video>
-  </div>
+  <main class="grid" id="video-grid"></main>
+
+  <script>
+    const grid = document.querySelector("#video-grid");
+
+    function addText(parent, tagName, text, className) {
+      if (!text) return;
+
+      const element = document.createElement(tagName);
+      element.textContent = text;
+      if (className) element.className = className;
+      parent.append(element);
+    }
+
+    function renderVideo(entry) {
+      const card = document.createElement("figure");
+      card.className = `video-card${entry.featured ? " featured" : ""}`;
+
+      const video = document.createElement("video");
+      video.src = entry.file;
+      video.controls = true;
+      video.preload = "metadata";
+      video.setAttribute("aria-label", entry.title);
+      card.append(video);
+
+      const caption = document.createElement("figcaption");
+      addText(caption, "h2", entry.title);
+      addText(
+        caption,
+        "p",
+        [entry.date, entry.location].filter(Boolean).join(" · ")
+      );
+      addText(caption, "p", entry.description);
+      addText(
+        caption,
+        "p",
+        entry.tags?.map((tag) => `#${tag}`).join(" "),
+        "tags"
+      );
+
+      if (caption.childElementCount) card.append(caption);
+      grid.append(card);
+    }
+
+    fetch("videos.json")
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((videos) => videos.forEach(renderVideo))
+      .catch((error) => {
+        grid.className = "error";
+        grid.textContent = `Could not load videos: ${error.message}`;
+      });
+  </script>
 </body>
 </html>
